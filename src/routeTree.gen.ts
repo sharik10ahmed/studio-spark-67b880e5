@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ChoreographyRouteImport } from './routes/choreography'
+import { Route as EventsRouteImport } from './routes/events'
 import { Route as FitnessRouteImport } from './routes/fitness'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as ProgramsRouteImport } from './routes/programs'
@@ -29,6 +30,11 @@ const AboutRoute = AboutRouteImport.update({
 const ChoreographyRoute = ChoreographyRouteImport.update({
   id: '/choreography',
   path: '/choreography',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FitnessRoute = FitnessRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/choreography': typeof ChoreographyRoute
+  '/events': typeof EventsRoute
   '/fitness': typeof FitnessRoute
   '/gallery': typeof GalleryRoute
   '/programs': typeof ProgramsRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/choreography': typeof ChoreographyRoute
+  '/events': typeof EventsRoute
   '/fitness': typeof FitnessRoute
   '/gallery': typeof GalleryRoute
   '/programs': typeof ProgramsRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/choreography': typeof ChoreographyRoute
+  '/events': typeof EventsRoute
   '/fitness': typeof FitnessRoute
   '/gallery': typeof GalleryRoute
   '/programs': typeof ProgramsRoute
@@ -75,14 +84,28 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/about' | '/choreography' | '/fitness' | '/gallery' | '/programs'
+    | '/'
+    | '/about'
+    | '/choreography'
+    | '/events'
+    | '/fitness'
+    | '/gallery'
+    | '/programs'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/choreography' | '/fitness' | '/gallery' | '/programs'
+  to:
+    | '/'
+    | '/about'
+    | '/choreography'
+    | '/events'
+    | '/fitness'
+    | '/gallery'
+    | '/programs'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/choreography'
+    | '/events'
     | '/fitness'
     | '/gallery'
     | '/programs'
@@ -92,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ChoreographyRoute: typeof ChoreographyRoute
+  EventsRoute: typeof EventsRoute
   FitnessRoute: typeof FitnessRoute
   GalleryRoute: typeof GalleryRoute
   ProgramsRoute: typeof ProgramsRoute
@@ -118,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/choreography'
       fullPath: '/choreography'
       preLoaderRoute: typeof ChoreographyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/fitness': {
@@ -148,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ChoreographyRoute: ChoreographyRoute,
+  EventsRoute: EventsRoute,
   FitnessRoute: FitnessRoute,
   GalleryRoute: GalleryRoute,
   ProgramsRoute: ProgramsRoute,
