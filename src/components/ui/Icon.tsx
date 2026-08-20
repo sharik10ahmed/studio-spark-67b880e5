@@ -50,7 +50,7 @@ export function Icon({
       aria-hidden="true"
       {...rest}
     >
-      <path d={paths[name] ?? paths.sparkles} />
+      <path d={paths[name] ?? paths["sparkles"]} />
     </svg>
   );
 }
