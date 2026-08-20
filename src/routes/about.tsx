@@ -60,7 +60,7 @@ function AboutPage() {
         image={IMG.g7}
       />
 
-      <section className="section">
+      <section className="bg-background py-20 sm:py-28">
         <div className="container-x grid items-center gap-14 lg:grid-cols-2">
           <Reveal>
             <img
@@ -89,7 +89,10 @@ function AboutPage() {
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {HERO_STATS.map((stat) => (
                 <div key={stat.label} className="border border-border bg-card p-5">
-                  <div className="font-display text-3xl text-primary">{stat.value}</div>
+                  <div className="font-display text-3xl text-primary">
+                    {stat.value}
+                    {stat.suffix}
+                  </div>
                   <div className="mt-1 text-xs uppercase tracking-[0.18em] text-muted-foreground">
                     {stat.label}
                   </div>
@@ -100,7 +103,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="section bg-soft">
+      <section className="bg-secondary py-20 sm:py-28">
         <div className="container-x">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {PILLARS.map((pillar, i) => (
